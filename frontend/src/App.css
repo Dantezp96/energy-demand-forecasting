@@ -201,9 +201,46 @@
 }
 
 .horizon-slider {
+  -webkit-appearance: none;
+  appearance: none;
   width: 100%;
-  accent-color: #0EA5E9;
   height: 6px;
+  border-radius: 3px;
+  background: #1E293B;
+  outline: none;
+  cursor: pointer;
+}
+
+.horizon-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #0EA5E9;
+  border: 2px solid #020617;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.horizon-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 8px rgba(14, 165, 233, 0.5);
+}
+
+.horizon-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #0EA5E9;
+  border: 2px solid #020617;
+  cursor: pointer;
+}
+
+.horizon-slider::-moz-range-track {
+  height: 6px;
+  border-radius: 3px;
+  background: #1E293B;
 }
 
 /* === Charts === */
