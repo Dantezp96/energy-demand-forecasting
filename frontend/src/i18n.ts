@@ -55,8 +55,8 @@ const translations = {
 
   // Section headers
   "section.historical.subtitle": {
-    en: "Explore historical energy consumption — use the aggregation buttons to switch between hourly, daily, weekly or monthly views.",
-    es: "Explora el consumo energético histórico — usa los botones de agregación para cambiar entre vista horaria, diaria, semanal o mensual.",
+    en: "Explore historical energy consumption. The aggregation control above also affects the comparison chart below.",
+    es: "Explora el consumo energético histórico. El control de agregación de arriba también afecta el gráfico de comparación.",
   },
   "section.forecast.subtitle": {
     en: "Generate future demand predictions — select how many days ahead you want to forecast.",
