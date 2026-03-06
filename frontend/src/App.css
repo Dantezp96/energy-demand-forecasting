@@ -195,6 +195,35 @@
   background: #1E293B;
 }
 
+/* === Chart Sections === */
+.chart-section {
+  margin-bottom: 1rem;
+}
+
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #1E293B;
+}
+
+.section-number {
+  font-size: 2rem;
+  font-weight: 800;
+  color: rgba(14, 165, 233, 0.25);
+  margin: 0;
+  line-height: 1;
+}
+
+.section-subtitle {
+  color: #64748B;
+  font-size: 0.9rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
 /* === Charts === */
 .chart-container {
   background: #0F172A;

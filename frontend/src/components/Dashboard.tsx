@@ -69,32 +69,50 @@ export function Dashboard({ lang }: Props) {
         />
       </div>
 
-      {/* Controls */}
-      <div className="controls-row">
-        <AggregationToggle value={aggregation} onChange={setAggregation} lang={lang} />
-        <HorizonSlider value={horizon} onChange={setHorizon} lang={lang} />
-      </div>
+      {/* Section 1: Historical */}
+      <section className="chart-section">
+        <div className="section-header">
+          <h3 className="section-number">01</h3>
+          <p className="section-subtitle">{t("section.historical.subtitle", lang)}</p>
+        </div>
+        <div className="controls-row">
+          <AggregationToggle value={aggregation} onChange={setAggregation} lang={lang} />
+        </div>
+        <HistoricalChart data={historical.data} loading={historical.loading} lang={lang} />
+        <div className="explain-card">
+          <h4 className="explain-title">{t("explain.historical.title", lang)}</h4>
+          <p dangerouslySetInnerHTML={{ __html: t("explain.historical.text", lang) }} />
+        </div>
+      </section>
 
-      {/* Historical Chart + Explanation */}
-      <HistoricalChart data={historical.data} loading={historical.loading} lang={lang} />
-      <div className="explain-card">
-        <h4 className="explain-title">{t("explain.historical.title", lang)}</h4>
-        <p dangerouslySetInnerHTML={{ __html: t("explain.historical.text", lang) }} />
-      </div>
+      {/* Section 2: Forecast */}
+      <section className="chart-section">
+        <div className="section-header">
+          <h3 className="section-number">02</h3>
+          <p className="section-subtitle">{t("section.forecast.subtitle", lang)}</p>
+        </div>
+        <div className="controls-row">
+          <HorizonSlider value={horizon} onChange={setHorizon} lang={lang} />
+        </div>
+        <ForecastChart data={forecast.data} loading={forecast.loading} lang={lang} />
+        <div className="explain-card">
+          <h4 className="explain-title">{t("explain.forecast.title", lang)}</h4>
+          <p dangerouslySetInnerHTML={{ __html: t("explain.forecast.text", lang) }} />
+        </div>
+      </section>
 
-      {/* Forecast Chart + Explanation */}
-      <ForecastChart data={forecast.data} loading={forecast.loading} lang={lang} />
-      <div className="explain-card">
-        <h4 className="explain-title">{t("explain.forecast.title", lang)}</h4>
-        <p dangerouslySetInnerHTML={{ __html: t("explain.forecast.text", lang) }} />
-      </div>
-
-      {/* Comparison Chart + Explanation */}
-      <ComparisonChart data={comparisonData} loading={metrics.loading} lang={lang} />
-      <div className="explain-card">
-        <h4 className="explain-title">{t("explain.comparison.title", lang)}</h4>
-        <p dangerouslySetInnerHTML={{ __html: t("explain.comparison.text", lang) }} />
-      </div>
+      {/* Section 3: Comparison */}
+      <section className="chart-section">
+        <div className="section-header">
+          <h3 className="section-number">03</h3>
+          <p className="section-subtitle">{t("section.comparison.subtitle", lang)}</p>
+        </div>
+        <ComparisonChart data={comparisonData} loading={metrics.loading} lang={lang} />
+        <div className="explain-card">
+          <h4 className="explain-title">{t("explain.comparison.title", lang)}</h4>
+          <p dangerouslySetInnerHTML={{ __html: t("explain.comparison.text", lang) }} />
+        </div>
+      </section>
 
       {/* Methodology Section */}
       <div className="methodology-card">

@@ -53,6 +53,20 @@ const translations = {
   "empty.forecast": { en: "No forecast data", es: "Sin datos de pronóstico" },
   "empty.comparison": { en: "No comparison data", es: "Sin datos de comparación" },
 
+  // Section headers
+  "section.historical.subtitle": {
+    en: "Explore historical energy consumption — use the aggregation buttons to switch between hourly, daily, weekly or monthly views.",
+    es: "Explora el consumo energético histórico — usa los botones de agregación para cambiar entre vista horaria, diaria, semanal o mensual.",
+  },
+  "section.forecast.subtitle": {
+    en: "Generate future demand predictions — select how many days ahead you want to forecast.",
+    es: "Genera predicciones de demanda futura — selecciona cuántos días adelante quieres pronosticar.",
+  },
+  "section.comparison.subtitle": {
+    en: "See how accurate the model is by comparing its predictions against real data it never saw.",
+    es: "Observa qué tan preciso es el modelo comparando sus predicciones contra datos reales que nunca vio.",
+  },
+
   // Explanatory sections
   "explain.historical.title": { en: "About This Data", es: "Sobre Estos Datos" },
   "explain.historical.text": {

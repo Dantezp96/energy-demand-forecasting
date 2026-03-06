@@ -6,7 +6,6 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Brush,
 } from "recharts";
 import type { DataPoint } from "../../api/historical";
 import { type Lang, t } from "../../i18n";
@@ -79,13 +78,6 @@ export function HistoricalChart({ data, loading, lang }: Props) {
             stroke="#0EA5E9"
             fill="url(#demandGradient)"
             strokeWidth={2}
-          />
-          <Brush
-            dataKey="datetime"
-            height={25}
-            stroke="#0EA5E9"
-            fill="#020617"
-            tickFormatter={(v) => formatDate(v, lang)}
           />
         </AreaChart>
       </ResponsiveContainer>
