@@ -33,6 +33,7 @@ export function Dashboard({ lang }: Props) {
 
   return (
     <div className="dashboard">
+      {/* Stats Cards */}
       <div className="stats-grid">
         <StatsCard
           label={t("stats.mape", lang)}
@@ -68,14 +69,44 @@ export function Dashboard({ lang }: Props) {
         />
       </div>
 
+      {/* Controls */}
       <div className="controls-row">
         <AggregationToggle value={aggregation} onChange={setAggregation} lang={lang} />
         <HorizonSlider value={horizon} onChange={setHorizon} lang={lang} />
       </div>
 
+      {/* Historical Chart + Explanation */}
       <HistoricalChart data={historical.data} loading={historical.loading} lang={lang} />
+      <div className="explain-card">
+        <h4 className="explain-title">{t("explain.historical.title", lang)}</h4>
+        <p dangerouslySetInnerHTML={{ __html: t("explain.historical.text", lang) }} />
+      </div>
+
+      {/* Forecast Chart + Explanation */}
       <ForecastChart data={forecast.data} loading={forecast.loading} lang={lang} />
+      <div className="explain-card">
+        <h4 className="explain-title">{t("explain.forecast.title", lang)}</h4>
+        <p dangerouslySetInnerHTML={{ __html: t("explain.forecast.text", lang) }} />
+      </div>
+
+      {/* Comparison Chart + Explanation */}
       <ComparisonChart data={comparisonData} loading={metrics.loading} lang={lang} />
+      <div className="explain-card">
+        <h4 className="explain-title">{t("explain.comparison.title", lang)}</h4>
+        <p dangerouslySetInnerHTML={{ __html: t("explain.comparison.text", lang) }} />
+      </div>
+
+      {/* Methodology Section */}
+      <div className="methodology-card">
+        <h3 className="methodology-title">{t("methodology.title", lang)}</h3>
+        <ul className="methodology-list">
+          <li dangerouslySetInnerHTML={{ __html: t("methodology.dataset", lang) }} />
+          <li dangerouslySetInnerHTML={{ __html: t("methodology.model", lang) }} />
+          <li dangerouslySetInnerHTML={{ __html: t("methodology.split", lang) }} />
+          <li dangerouslySetInnerHTML={{ __html: t("methodology.metrics", lang) }} />
+          <li dangerouslySetInnerHTML={{ __html: t("methodology.stack", lang) }} />
+        </ul>
+      </div>
     </div>
   );
 }
