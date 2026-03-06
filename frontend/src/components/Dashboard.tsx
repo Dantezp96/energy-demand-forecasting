@@ -8,8 +8,13 @@ import { ComparisonChart } from "./charts/ComparisonChart";
 import { StatsCard } from "./cards/StatsCard";
 import { AggregationToggle } from "./controls/AggregationToggle";
 import { HorizonSlider } from "./controls/HorizonSlider";
+import { type Lang, t } from "../i18n";
 
-export function Dashboard() {
+interface Props {
+  lang: Lang;
+}
+
+export function Dashboard({ lang }: Props) {
   const [aggregation, setAggregation] = useState("daily");
   const [horizon, setHorizon] = useState(168);
 
@@ -28,15 +33,14 @@ export function Dashboard() {
 
   return (
     <div className="dashboard">
-      {/* Stats Cards */}
       <div className="stats-grid">
         <StatsCard
-          label="Model MAPE"
+          label={t("stats.mape", lang)}
           value={metrics.data ? `${metrics.data.metrics.mape}` : "—"}
           unit="%"
         />
         <StatsCard
-          label="Peak Demand"
+          label={t("stats.peak", lang)}
           value={
             metrics.data
               ? `${(metrics.data.dataset_stats.peak_demand_mw / 1000).toFixed(1)}`
@@ -45,7 +49,7 @@ export function Dashboard() {
           unit="GW"
         />
         <StatsCard
-          label="Avg Demand"
+          label={t("stats.avg", lang)}
           value={
             metrics.data
               ? `${(metrics.data.dataset_stats.avg_demand_mw / 1000).toFixed(1)}`
@@ -54,7 +58,7 @@ export function Dashboard() {
           unit="GW"
         />
         <StatsCard
-          label="Total Records"
+          label={t("stats.records", lang)}
           value={
             metrics.data
               ? `${(metrics.data.dataset_stats.total_records / 1000).toFixed(0)}`
@@ -64,16 +68,14 @@ export function Dashboard() {
         />
       </div>
 
-      {/* Controls */}
       <div className="controls-row">
-        <AggregationToggle value={aggregation} onChange={setAggregation} />
-        <HorizonSlider value={horizon} onChange={setHorizon} />
+        <AggregationToggle value={aggregation} onChange={setAggregation} lang={lang} />
+        <HorizonSlider value={horizon} onChange={setHorizon} lang={lang} />
       </div>
 
-      {/* Charts */}
-      <HistoricalChart data={historical.data} loading={historical.loading} />
-      <ForecastChart data={forecast.data} loading={forecast.loading} />
-      <ComparisonChart data={comparisonData} loading={metrics.loading} />
+      <HistoricalChart data={historical.data} loading={historical.loading} lang={lang} />
+      <ForecastChart data={forecast.data} loading={forecast.loading} lang={lang} />
+      <ComparisonChart data={comparisonData} loading={metrics.loading} lang={lang} />
     </div>
   );
 }

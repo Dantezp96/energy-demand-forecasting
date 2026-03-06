@@ -8,6 +8,7 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
+import { type Lang, t } from "../../i18n";
 
 interface ComparisonPoint {
   datetime: string;
@@ -18,67 +19,70 @@ interface ComparisonPoint {
 interface Props {
   data: ComparisonPoint[];
   loading: boolean;
+  lang: Lang;
 }
 
-function formatDate(datetime: string) {
-  return new Date(datetime).toLocaleDateString("en-US", {
+function formatDate(datetime: string, lang: Lang) {
+  return new Date(datetime).toLocaleDateString(lang === "es" ? "es-CO" : "en-US", {
     month: "short",
     day: "numeric",
   });
 }
 
-export function ComparisonChart({ data, loading }: Props) {
-  if (loading) return <div className="chart-loading">Loading comparison...</div>;
-  if (!data.length) return <div className="chart-empty">No comparison data</div>;
+export function ComparisonChart({ data, loading, lang }: Props) {
+  if (loading) return <div className="chart-loading">{t("loading.comparison", lang)}</div>;
+  if (!data.length) return <div className="chart-empty">{t("empty.comparison", lang)}</div>;
 
   return (
     <div className="chart-container">
-      <h3 className="chart-title">Actual vs Predicted (Test Set)</h3>
+      <h3 className="chart-title">{t("chart.comparison", lang)}</h3>
       <ResponsiveContainer width="100%" height={350}>
         <LineChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#2A2A3E" />
+          <CartesianGrid strokeDasharray="3 3" stroke="#1E293B" />
           <XAxis
             dataKey="datetime"
-            stroke="#A1A1AA"
+            stroke="#64748B"
             tick={{ fontSize: 11 }}
-            tickFormatter={formatDate}
+            tickFormatter={(v) => formatDate(v, lang)}
           />
           <YAxis
-            stroke="#A1A1AA"
+            stroke="#64748B"
             tick={{ fontSize: 11 }}
             tickFormatter={(v: number) => `${(v / 1000).toFixed(0)}K`}
             width={50}
           />
           <Tooltip
             contentStyle={{
-              background: "#1A1A2E",
-              border: "1px solid #2A2A3E",
+              background: "#0F172A",
+              border: "1px solid #1E293B",
               borderRadius: 8,
-              color: "#E4E4E7",
+              color: "#E2E8F0",
             }}
-            labelFormatter={(label) => new Date(label).toLocaleString()}
+            labelFormatter={(label) =>
+              new Date(label).toLocaleString(lang === "es" ? "es-CO" : "en-US")
+            }
             formatter={(value, name) => [
               `${Number(value).toLocaleString()} MW`,
-              name === "actual" ? "Actual" : "Predicted",
+              name === "actual" ? t("chart.actual", lang) : t("chart.predicted", lang),
             ]}
           />
           <Legend />
           <Line
             type="monotone"
             dataKey="actual"
-            stroke="#A1A1AA"
+            stroke="#64748B"
             strokeWidth={1.5}
             dot={false}
-            name="Actual"
+            name={t("chart.actual", lang)}
           />
           <Line
             type="monotone"
             dataKey="predicted"
-            stroke="#6C63FF"
+            stroke="#10B981"
             strokeWidth={2}
             strokeDasharray="6 3"
             dot={false}
-            name="Predicted"
+            name={t("chart.predicted", lang)}
           />
         </LineChart>
       </ResponsiveContainer>

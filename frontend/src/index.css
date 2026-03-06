@@ -11,8 +11,8 @@
   line-height: 1.5;
   font-weight: 400;
   color-scheme: dark;
-  color: #E4E4E7;
-  background-color: #0F0F1A;
+  color: #E2E8F0;
+  background-color: #020617;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -28,14 +28,14 @@ body {
 }
 
 a {
-  color: #6C63FF;
+  color: #0EA5E9;
   text-decoration: none;
 }
 
 a:hover {
-  color: #8B83FF;
+  color: #38BDF8;
 }
 
 strong {
-  color: #E4E4E7;
+  color: #E2E8F0;
 }

@@ -1,14 +1,24 @@
+import { type Lang, t } from "../../i18n";
+
 const OPTIONS = ["hourly", "daily", "weekly", "monthly"] as const;
+
+const LABEL_KEYS: Record<string, "controls.hourly" | "controls.daily" | "controls.weekly" | "controls.monthly"> = {
+  hourly: "controls.hourly",
+  daily: "controls.daily",
+  weekly: "controls.weekly",
+  monthly: "controls.monthly",
+};
 
 interface Props {
   value: string;
   onChange: (val: string) => void;
+  lang: Lang;
 }
 
-export function AggregationToggle({ value, onChange }: Props) {
+export function AggregationToggle({ value, onChange, lang }: Props) {
   return (
     <div className="toggle-group">
-      <label className="control-label">Aggregation</label>
+      <label className="control-label">{t("controls.aggregation", lang)}</label>
       <div className="toggle-buttons">
         {OPTIONS.map((opt) => (
           <button
@@ -16,7 +26,7 @@ export function AggregationToggle({ value, onChange }: Props) {
             className={`toggle-btn ${value === opt ? "active" : ""}`}
             onClick={() => onChange(opt)}
           >
-            {opt.charAt(0).toUpperCase() + opt.slice(1)}
+            {t(LABEL_KEYS[opt], lang)}
           </button>
         ))}
       </div>
